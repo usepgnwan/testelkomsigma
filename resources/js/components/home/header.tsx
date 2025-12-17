@@ -1,11 +1,14 @@
-import { login } from "@/routes";
-import { Link } from "@inertiajs/react";
+import { dashboard, login } from "@/routes";
+import { SharedData } from "@/types";
+import { Link, usePage } from "@inertiajs/react";
 import { Button, Drawer } from "antd";
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Header(){
 
+    const { auth } = usePage<SharedData>().props;
+    console.log(auth.user)
     const [scrolled, setScrolled] = useState(false);
 
         useEffect(() => {
@@ -52,12 +55,22 @@ export function Header(){
                         </ul>
                     </div>
                     <div className='flex space-x-2 justify-center items-center max-md:hidden'>
-                         
+                         {auth.user ? (
+                                       <>
+                                        <Link
+                                            href={dashboard()}
+                                            className="inline-block rounded-sm border border-white px-5 py-1.5 text-lg leading-normal text-white hover:border-white dark:border-white dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+                                        >
+                                            Dashboard
+                                        </Link>
+                                       </>
+                                    ) : (
 
-                            <Link   href={login()} className="flex-1 items-center justify-center bg-white   text-gray-700 py-3 rounded-lg text-lg font-semibold 
-                                    shadow-sm hover:bg-gray-100 hover:shadow-md transition-all duration-200 text-center">
-                                Login
-                            </Link>
+                                            <Link   href={login()} className="flex-1 items-center justify-center bg-white   text-gray-700 py-3 rounded-lg text-lg font-semibold 
+                                                    shadow-sm hover:bg-gray-100 hover:shadow-md transition-all duration-200 text-center">
+                                                Login
+                                            </Link>
+                                    )}
                     </div>
                      
                 </div>

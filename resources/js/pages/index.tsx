@@ -11,7 +11,6 @@ export default function Index({
 }: {
     canRegister?: boolean;
 }) {
-    const { auth } = usePage<SharedData>().props;
     const {props } = usePage(); 
     return (
         <>

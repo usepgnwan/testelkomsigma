@@ -48,8 +48,7 @@ export function Trending(){
                     "Content-Type": "application/json",
                 },
             });
-            const d = await res.json();  
-            console.log(d.results??[])
+            const d = await res.json();   
             setData(d.results??[])
         } catch (err) { 
             console.error(err);
