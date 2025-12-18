@@ -45,11 +45,9 @@ export default function DetailCard({ detailData }) {
                                 <div className="mt-4 space-x-4">
                                     <small className='inline-flex items-center  text-xs'><Star className='text-yellow-400 w-4 h-4' /> &nbsp; {detailData?.vote_average}</small>
                                     <small className='inline-flex items-center col-span-2  text-nowrap text-xs'><Clock9  className='text-yellow-400 w-4 h-4'/> &nbsp;
-                                    {detailData?.release_date !== undefined && detailData?.release_date !== null && (
+                                    {detailData?.release_date !== undefined && detailData?.release_date !== null ? (
                                         DateID(detailData?.release_date  , "date")
-                                    ) }
-                                    
-                                    { detailData?.date_sycn !== undefined && detailData?.date_sycn!== null  &&(
+                                    ) : (
                                         DateID(detailData?.date_sycn  , "date")
                                     ) }
                                     
