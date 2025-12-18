@@ -2,6 +2,7 @@
 use App\Http\Controllers\User;
 use App\Http\Controllers\Genre;
 use App\Http\Controllers\Movies;
+use App\Http\Controllers\Dashboard;
 Route::prefix('platform')->group(function () {
     Route::get('data-user', [User::class, 'create'])->name('userget');
     Route::get('data-user/{user}', [User::class, 'show'])->name('usergetid'); 
@@ -15,4 +16,8 @@ Route::prefix('platform')->group(function () {
     Route::get('data-movies', [Movies::class, 'create'])->name('movies');
     Route::post('data-movies', [Movies::class, 'store'])->name('moviessyn');
     
+    Route::prefix('dashboard')->group(function () { 
+        Route::get('summary/{datestart}/{dateend}', [Dashboard::class, 'summary'])->name('dashboardsummary');
+        Route::get('summarycategory/{datestart}/{dateend}', [Dashboard::class, 'groupbycategory'])->name('dashboardcategory');
+    });
 });
