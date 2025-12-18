@@ -23,7 +23,6 @@ class Movies extends Controller
     ];
     public function __construct(Mmovies $mModel){
         $this->mModel = $mModel;
-        $this->default_sorts = ["date_sycn" => "desc"];
     }
 
     public function getRowsQuery(Request $request)
@@ -42,6 +41,7 @@ class Movies extends Controller
 
     public function create(Request $request): Response
     { 
+        $this->default_sorts = ["date_sycn" => "desc"];
         $data = $this->getRows($request); 
         $search = $request->get('search'); 
         return Inertia::render('dashboard/movies',
@@ -149,6 +149,7 @@ class Movies extends Controller
  
     public function getList(Request $request){
         $data = $this->getRows($request); 
+        $this->default_sorts = ["id" => "desc","date_sycn"=>"desc"];
         return response()->json(["data"=>$data]);
     }
 }

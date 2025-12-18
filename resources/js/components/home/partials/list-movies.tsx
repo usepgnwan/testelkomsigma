@@ -17,7 +17,7 @@ export function ListMovies() {
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
 
-    /* responsive skeleton */
+   
     useEffect(() => {
         const updateLength = () => {
             setLengthData(window.innerWidth <= 768 ? 3 : 6);
@@ -29,8 +29,9 @@ export function ListMovies() {
         return () => window.removeEventListener("resize", updateLength);
     }, []);
 
-    /* fetch data */
+   
     const getTrending = async (pageNum = 1) => {
+        console.log(pageNum)
         try {
             setLoading(true);
 
@@ -98,7 +99,7 @@ export function ListMovies() {
                 <>
                     <div className="grid grid-cols-3 max-md:grid-cols-1 gap-3">
                         {data.map((item, i) => (
-                            <div onClick={async()=> await Detail(item)}>
+                            <div key={i} onClick={async()=> await Detail(item)}>
                                 <CardMovie key={item.id ?? i} detailData={item} isnew={false} />
                             </div>
                         ))}

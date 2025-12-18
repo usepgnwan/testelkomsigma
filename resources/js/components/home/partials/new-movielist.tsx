@@ -92,7 +92,7 @@ export function NewMovieList() {
                 <>
                     <div className="grid grid-cols-1 gap-3">
                         {data.map((item, i) => (
-                            <div onClick={async()=> await Detail(item)}>
+                            <div key={i} onClick={async()=> await Detail(item)}>
                                 <CardMovie key={item.id ?? i} detailData={item} isnew={true} />
                             </div>
                         ))}
