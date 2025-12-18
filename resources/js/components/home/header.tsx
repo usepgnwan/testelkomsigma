@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 
 export function Header(){
 
-    const { auth } = usePage<SharedData>().props;
-    console.log(auth.user)
+    const { auth } = usePage<SharedData>().props; 
     const [scrolled, setScrolled] = useState(false);
 
         useEffect(() => {

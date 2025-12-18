@@ -10,10 +10,10 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import { dashboard, genre, movies, userget } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Clapperboard, FileImageIcon, Film, Folder, LayoutGrid, UserIcon } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -21,6 +21,21 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'User',
+        href: userget(),
+        icon: UserIcon,
+    },
+    {
+        title: 'Genre',
+        href: genre(),
+        icon: Film,
+    },
+    {
+        title: 'Movies & TV List',
+        href: movies(),
+        icon: Clapperboard,
     },
 ];
 

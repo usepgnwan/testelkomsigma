@@ -1,0 +1,142 @@
+import { usePage } from "@inertiajs/react";
+import { Modal, Skeleton } from "antd";
+import React, { useEffect, useState } from "react";
+import { movieslist } from "@/routes";
+import { CardMovie } from "./card-movie";
+import DetailCard from "@/pages/partials/detailcard";
+
+export function ListMovies() {
+    const { url } = usePage();
+    const queryParams = new URLSearchParams(url.split("?")[1]);
+
+    const perPage = queryParams.get("per_page") || "9";
+
+    const [data, setData] = useState<any[]>([]);
+    const [loading, setLoading] = useState(false);
+    const [lengthData, setLengthData] = useState(6);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+
+    /* responsive skeleton */
+    useEffect(() => {
+        const updateLength = () => {
+            setLengthData(window.innerWidth <= 768 ? 3 : 6);
+        };
+
+        updateLength();
+        window.addEventListener("resize", updateLength);
+
+        return () => window.removeEventListener("resize", updateLength);
+    }, []);
+
+    /* fetch data */
+    const getTrending = async (pageNum = 1) => {
+        try {
+            setLoading(true);
+
+            const res = await fetch(
+                `${movieslist().url}?per_page=${perPage}&page=${pageNum}`,
+                { method: "GET" }
+            );
+
+            const d = await res.json();
+
+            if (pageNum === 1) {
+                setData(d.data.data);
+            } else {
+                setData(prev => [...prev, ...d.data.data]);
+            }
+
+            setHasMore(d.data.next_page_url !== null);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+ 
+    useEffect(() => {
+        getTrending(1);
+    }, []);
+
+    const loadMore = () => {
+        const nextPage = page + 1;
+        setPage(nextPage);
+        getTrending(nextPage);
+    };
+
+    
+    const [showdetail, setshowdetail] = useState(false)
+    const [detailData, setdetailData] = useState({});
+    const Detail = async (data:any) => {
+        setshowdetail(true);  
+        setdetailData(data) 
+    };
+    const handleCancel = () => {
+        setshowdetail(false) 
+    };
+        
+    return (
+        <>
+            {loading && data.length === 0 ? (
+                <div className="grid grid-cols-3 max-md:grid-cols-1 gap-3">
+                    {Array.from({ length: lengthData }).map((_, i) => (
+                        <div key={i} className="border border-gray-200">
+                            <div className="flex space-x-2">
+                                <div className="h-52 w-44">
+                                    <Skeleton.Image active className="!w-full !h-full" />
+                                </div>
+                                <div className="p-4 w-3/4">
+                                    <Skeleton active />
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <>
+                    <div className="grid grid-cols-3 max-md:grid-cols-1 gap-3">
+                        {data.map((item, i) => (
+                            <div onClick={async()=> await Detail(item)}>
+                                <CardMovie key={item.id ?? i} detailData={item} isnew={false} />
+                            </div>
+                        ))}
+                    </div>
+
+               
+                    {hasMore && (
+                        <div className="flex justify-center mt-6">
+                            <button
+                                onClick={loadMore}
+                                disabled={loading}
+                                className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+                            >
+                                {loading ? "Loading..." : "Load More"}
+                            </button>
+                        </div>
+                    )}
+                </>
+            )}
+
+
+            <Modal
+                title="Detail Movies"
+                closable={false}
+                open={showdetail}
+                width={800}  
+                okButtonProps={{ style: { display: "none" } }}
+                onCancel={handleCancel}
+                cancelText="Tutup"
+
+                >
+                <div className='space-y-8'>  
+
+                    {showdetail && ( 
+                        <DetailCard detailData={detailData} />
+                    )}
+                </div>
+            </Modal>
+        </>
+    );
+}
