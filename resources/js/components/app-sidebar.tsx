@@ -16,12 +16,16 @@ import { Link } from '@inertiajs/react';
 import { BookOpen, Clapperboard, FileImageIcon, Film, Folder, LayoutGrid, UserIcon } from 'lucide-react';
 import AppLogo from './app-logo';
 
-const mainNavItems: NavItem[] = [
+const mainNavDashboardItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
     },
+    
+];
+const mainNavItems: NavItem[] = [
+    
     {
         title: 'User',
         href: userget(),
@@ -68,7 +72,8 @@ export function AppSidebar() {
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
+                <NavMain items={mainNavDashboardItems} title='Dashboard'/>
+                <NavMain items={mainNavItems} title='Platform'/>
             </SidebarContent>
 
             <SidebarFooter>

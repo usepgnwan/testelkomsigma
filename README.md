@@ -42,6 +42,10 @@ https://api.themoviedb.org/3/discover/tv
 
 ---
 ## Dashboard 
+- Pemantauan & Summary 
+<img width="1919" height="984" alt="image" src="https://github.com/user-attachments/assets/2fabda99-e176-49c3-9d56-a8eeded6627f" />
+<img width="1919" height="1004" alt="image" src="https://github.com/user-attachments/assets/24206c01-8089-4f5c-972a-ba8daffdf5c6" />
+
 - Crud Di User
 <img width="1919" height="993" alt="image" src="https://github.com/user-attachments/assets/f8ed6637-9c1f-46fc-9477-d1f87d6b6603" />
 - sync data category movie & tv show
