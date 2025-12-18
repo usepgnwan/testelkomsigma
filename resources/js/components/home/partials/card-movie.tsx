@@ -47,7 +47,7 @@ export function CardMovie({ detailData , isnew }){
                               {detailData?.release_date !== undefined && detailData?.release_date !== null ? (
                                         DateID(detailData?.release_date  , "date")
                                     ) : (
-                                        DateID(detailData?.date_sync  , "date")
+                                        DateID(detailData?.date_sycn  , "date")
                                 ) }
                             </small>
                             <small className='inline-flex items-center  text-xs'><Users  className='text-yellow-400 w-4 h-4'/> &nbsp; {detailData?.vote_count}</small>
