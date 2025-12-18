@@ -1,6 +1,6 @@
 import BarGenreTvMovie from '@/components/dashboard/BarGenreTvMovie'; 
 import LineTopGenre from '@/components/dashboard/LineTopGenre';
-import PieCategory from '@/components/dashboard/pieCategory';
+import PieCategory from '@/components/dashboard/PieCategory';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard, dashboardcategory, dashboardsummary } from '@/routes';
