@@ -1,12 +1,13 @@
 import { usePage } from "@inertiajs/react";
-import { Skeleton } from "antd";
-import { useEffect, useState } from "react";
+import { Modal, Skeleton } from "antd";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import DetailCard from "@/pages/partials/detailcard";
 export function Trending(){
     const {props } = usePage(); 
     const [Data, setData] = useState([]);
@@ -55,6 +56,17 @@ export function Trending(){
         }
     }
 
+    const [showdetail, setshowdetail] = useState(false)
+    const [detailData, setdetailData] = useState({});
+    const Detail = async (id:number) => {
+        setshowdetail(true); 
+        console.log(id);
+        setdetailData(Data.find((v) => v.id === id))
+        console.log(detailData);
+    };
+    const handleCancel = () => {
+        setshowdetail(false) 
+    };
     return (
         <>
 
@@ -62,11 +74,11 @@ export function Trending(){
                 <> 
                     <div className='grid grid-cols-6  max-md:grid-cols-3  gap-3'>  
                         {Array.from({ length: lengthData }).map((_,i)=>(
-                            <>
+                            <React.Fragment key={i}>
                                 <div key={i} className='h-72 w-full border border-gray-200 bg-gray-200'>
                                     <Skeleton.Image active={loading} className="!w-full !h-full"/>
                                 </div>
-                            </>
+                            </React.Fragment>
                         ))} 
                     </div>
                 </>
@@ -111,17 +123,15 @@ export function Trending(){
                                         }}
                                     >
                                 
-                                    {Data.map((v)=>(
-                                        <>
-                                            <SwiperSlide >
-                                                <div className='h-72 w-full border border-gray-200'>
-                                                    <img  src={`${props.tmdb.uri_img_tmdb}${v.poster_path}`}
-                                                        className="w-full h-full object-cover"
-                                                        alt="background"
-                                                    />      
-                                                </div> 
-                                            </SwiperSlide>
-                                        </>
+                                    {Data.map((v,i)=>( 
+                                        <SwiperSlide key={i} >
+                                            <div className='h-72 w-full border border-gray-200 hover:cursor-pointer'  onClick={async()=> await Detail(v.id)}>
+                                                <img  src={`${props.tmdb.uri_img_tmdb}${v.poster_path}`}
+                                                    className="w-full h-full object-cover"
+                                                    alt="background"
+                                                />      
+                                            </div> 
+                                        </SwiperSlide> 
                                     ))}
                                     
                                         
@@ -132,7 +142,24 @@ export function Trending(){
                 </>
             )}
            
-            
+            <Modal
+                title="Detail Movies"
+                closable={false}
+                open={showdetail}
+                width={800}  
+                okButtonProps={{ style: { display: "none" } }}
+                onCancel={handleCancel}
+                cancelText="Tutup"
+
+                >
+                <div className='space-y-8'>  
+
+                    {showdetail && ( 
+                       <DetailCard detailData={detailData} />
+                    )}
+                </div>
+            </Modal>
+
         </>
     )
 }

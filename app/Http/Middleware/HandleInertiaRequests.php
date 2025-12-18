@@ -49,7 +49,8 @@ class HandleInertiaRequests extends Middleware
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
             'tmdb' => [
                 'token' => config('services.movie.bearer'),
-                'uri_img_tmdb' => config('services.movie.uri_img_movie')
+                'uri_img_tmdb' => config('services.movie.uri_img_movie'),
+                'uri_tmdb' =>  config('services.movie.uri_tmdb'),
             ]
         ];
     }

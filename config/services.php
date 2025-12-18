@@ -38,5 +38,6 @@ return [
     'movie'=>[
         'bearer'=> env('TOKEN_MOVIE'),
         'uri_img_movie'=> env('URI_IMG_MOVIE'),
+        'uri_tmdb'=> env('URI_TMDB'),
     ]
 ];
