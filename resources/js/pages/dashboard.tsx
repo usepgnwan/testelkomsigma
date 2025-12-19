@@ -241,7 +241,7 @@ export default function Dashboard() {
                             <h5 className=' p-4 font-semibold'>Tren Berdasarkan Genre</h5>
                              <BarGenreTvMovie data={datagroupcategory} />
                      </div>
-                    <div className='  shadow-sm border border-gray-100 rounded-2xl min-h-72  col-span-3'>  
+                    <div className='  shadow-sm border border-gray-100 rounded-2xl min-h-72  col-span-3 relative'>  
                             {loading && (
                                 <div className='backdrop-blur-sm w-full h-full absolute rounded-2xl  z-40'></div>
                             ) }  
