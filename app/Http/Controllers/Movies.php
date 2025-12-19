@@ -148,8 +148,8 @@ class Movies extends Controller
     }
  
     public function getList(Request $request){
-        $data = $this->getRows($request); 
         $this->default_sorts = ["id" => "desc","date_sycn"=>"desc"];
+        $data = $this->getRows($request); 
         return response()->json(["data"=>$data]);
     }
 }
