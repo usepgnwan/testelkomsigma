@@ -49,6 +49,8 @@ export default function Dashboard() {
     const [topten, settopten] = useState([])
     const [datagroupcategory, setdatagroupcategory] = useState([])
     useEffect(()=>{
+        console.log(dates);
+        
         let newDate = [dates[0].format("YYYY-MM-DD"),dates[1].format("YYYY-MM-DD")];
         (async()=>{
             await getData(dashboardsummary({datestart:newDate[0], dateend:newDate[1]}).url).then((v)=>{ 
@@ -100,11 +102,7 @@ export default function Dashboard() {
                                     }}
                                     
                                     onChange={(ranges) => {
-                                        if (ranges?.[0] && ranges?.[1] && ranges[1].diff(ranges[0], 'day') > 0) {
-                                            setDates([ranges[0], ranges[1]]);
-                                        } else {
-                                            setDates(null);
-                                        }
+                                        setDates([ranges[0], ranges[1]]);
                                         setPanelVisible(false);
                                     }}
                                 />
