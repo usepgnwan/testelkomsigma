@@ -48,7 +48,7 @@ export default function DetailCard({ detailData }) {
                                     {detailData?.release_date !== undefined && detailData?.release_date !== null ? (
                                         DateID(detailData?.release_date  , "date")
                                     ) : (
-                                        DateID(detailData?.date_sycn  , "date")
+                                        detailData?.date_sycn  !== undefined?  DateID(detailData?.date_sycn  , "date") : "-"
                                     ) }
                                     
                                     </small>
