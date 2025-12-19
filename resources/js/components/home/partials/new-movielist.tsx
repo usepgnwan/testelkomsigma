@@ -19,7 +19,7 @@ export function NewMovieList() {
 
     useEffect(() => {
         const updateLength = () => {
-            setLengthData(window.innerWidth <= 768 ? 3 : 6);
+            setLengthData(window.innerWidth <= 768 ? 3 : 3);
         };
 
         updateLength();
@@ -73,17 +73,21 @@ export function NewMovieList() {
         
     return (
         <>
+        <div className=" ">
+              
+            </div>
             {loading && data.length === 0 ? (
                 <div className="grid grid-cols-1 gap-3">
                     {Array.from({ length: lengthData }).map((_, i) => (
-                        <div key={i} className="border border-gray-200">
-                            <div className="flex space-x-2">
-                                <div className="h-24  w-44">
-                                    <Skeleton.Image active className="!w-full !h-full" />
-                                </div>
-                                <div className="p-4 w-3/4">
-                                    <Skeleton active />
-                                </div>
+                        <div key={i} className="flex space-x-2">
+                            <div className="h-28  w-20">
+                                <Skeleton.Image active className="!w-full !h-full" />
+                            </div>
+                            <div className=" w-3/4 h-28 space-y-0 "> 
+                                <Skeleton.Input active={true} size="small" style={{height:10  }} />
+                                <Skeleton.Input active={true} size="small" style={{height:10  }} className="!w-full"/>
+                                <Skeleton.Input active={true} size="small" style={{height:10  }} className="!w-full"/> 
+                                <Skeleton.Input active={true} size="small" style={{height:10  }} className="!w-full"/> 
                             </div>
                         </div>
                     ))}

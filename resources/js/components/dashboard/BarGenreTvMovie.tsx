@@ -15,7 +15,7 @@ export default function BarGenreTvMovie({data }: {data:any}) {
     },
     legend: {
       bottom: 0,
-      data: ["TV", "Movies"],
+      data: ["Movies","TV"],
     },
     grid: {
       left: "3%",
@@ -31,16 +31,7 @@ export default function BarGenreTvMovie({data }: {data:any}) {
       type: "value",
     },
     series: [
-      {
-        name: "TV",
-        type: "bar",
-        data: tvData,
-        barGap: 0,
-        barWidth: "30%",
-        itemStyle: {
-          borderRadius: [6, 6, 0, 0],
-        },
-      },
+      
       {
         name: "Movies",
         type: "bar",
@@ -50,6 +41,16 @@ export default function BarGenreTvMovie({data }: {data:any}) {
           borderRadius: [6, 6, 0, 0],
         },
       },
+      {
+        name: "TV",
+        type: "bar",
+        data: tvData,
+        barGap: 0,
+        barWidth: "30%",
+        itemStyle: {
+          borderRadius: [6, 6, 0, 0],
+        },
+      }
     ],
   };
 
