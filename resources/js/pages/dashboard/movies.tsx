@@ -148,7 +148,7 @@ export default function User({ data ,filters}) {
                                 </Th> 
                                 <Th
                                     sortable
-                                    direction={sorts.created_at ?? null}
+                                    direction={sorts.date_sycn ?? null}
                                     multiColumn 
                                     onClick={() => sortBy("date_sycn")}
                                 >
@@ -254,7 +254,7 @@ export default function User({ data ,filters}) {
                                 </Th> 
                                 <Th
                                     sortable
-                                    direction={sorts.created_at ?? null}
+                                    direction={sorts.date_sycn ?? null}
                                     multiColumn 
                                     onClick={() => sortBy("date_sycn")}
                                 >
